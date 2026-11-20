@@ -1,0 +1,120 @@
+/* 姓名：田武杰 | 学号：24002120205
+   时间：2026-11-20 | 大模型：GLM-5.3-Flash
+   图文列表页样式：网格布局，上图下文卡片 */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Microsoft YaHei", sans-serif;
+  background: #10182e;
+  color: #eaf0ff;
+}
+
+.twj_page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 16px 48px;
+}
+
+.twj_header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.twj_title {
+  font-size: 30px;
+  margin-bottom: 10px;
+  text-shadow: 0 0 20px rgba(96, 156, 255, 0.5);
+}
+
+.twj_meta {
+  font-size: 14px;
+  color: #8fa3d8;
+}
+
+.twj_api {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #63709a;
+}
+
+.twj_api_link {
+  color: #7fb3ff;
+  text-decoration: none;
+}
+
+.twj_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.twj_card {
+  background: rgba(24, 34, 66, 0.9);
+  border: 1px solid rgba(120, 160, 255, 0.22);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.twj_card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 26px rgba(40, 90, 200, 0.3);
+}
+
+.twj_card_img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+  background: linear-gradient(135deg, #2a3b6e, #17224a);
+}
+
+.twj_card_body {
+  padding: 14px 16px 16px;
+}
+
+.twj_card_title {
+  font-size: 16px;
+  color: #eaf0ff;
+  margin-bottom: 6px;
+}
+
+.twj_card_desc {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #93a6d4;
+}
+
+.twj_card_foot {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #6f83b8;
+}
+
+.twj_loading,
+.twj_error {
+  text-align: center;
+  color: #8fa3d8;
+  padding: 40px 0;
+  grid-column: 1 / -1;
+}
+
+.twj_error {
+  color: #f87171;
+}
+
+.twj_back {
+  display: block;
+  margin-top: 32px;
+  text-align: center;
+  color: #7fb3ff;
+  text-decoration: none;
+  font-size: 14px;
+}

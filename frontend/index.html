@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+  姓名：田武杰 | 学号：24002120205
+  时间：2026-11-20 | 大模型：GLM-5.3-Flash
+  前端首页：canvas 粒子背景动画 + 页面导航
+-->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>全栈课程作业 - 田武杰</title>
+  <link rel="stylesheet" href="css/twj_home.css">
+</head>
+<body>
+  <canvas id="twj_canvas"></canvas>
+  <div class="twj_page">
+    <header class="twj_header">
+      <h1 class="twj_title">全栈课程作业项目</h1>
+      <p class="twj_subtitle">姓名：田武杰 | 学号：24002120205</p>
+      <p class="twj_meta">项目名称：科技资讯全栈站 | 项目类别：自选</p>
+    </header>
+
+    <main class="twj_nav">
+      <a class="twj_card" href="database.html">
+        <span class="twj_card_icon">DB</span>
+        <span class="twj_card_name">数据库连接测试</span>
+        <span class="twj_card_desc">输入账号密码，测试 MySQL 连接</span>
+      </a>
+      <a class="twj_card" href="news.html">
+        <span class="twj_card_icon">NEW</span>
+        <span class="twj_card_name">科技新闻列表</span>
+        <span class="twj_card_desc">读取 twj_news 表，展示新闻列表</span>
+      </a>
+      <a class="twj_card" href="gallery.html">
+        <span class="twj_card_icon">IMG</span>
+        <span class="twj_card_name">图文列表</span>
+        <span class="twj_card_desc">读取 twj_gallery 表，上图下文卡片</span>
+      </a>
+    </main>
+
+    <footer class="twj_footer">
+      <p>后端接口：<a href="api/health" class="twj_link">/api/health</a></p>
+    </footer>
+  </div>
+  <script src="js/twj_home.js"></script>
+</body>
+</html>

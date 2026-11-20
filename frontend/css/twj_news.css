@@ -1,0 +1,110 @@
+/* 姓名：田武杰 | 学号：24002120205
+   时间：2026-11-20 | 大模型：GLM-5.3-Flash
+   科技新闻列表页样式 */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Microsoft YaHei", sans-serif;
+  background: #f4f6fb;
+  color: #22293f;
+}
+
+.twj_page {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 40px 16px 48px;
+}
+
+.twj_header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.twj_title {
+  font-size: 30px;
+  margin-bottom: 10px;
+  color: #1b2f66;
+}
+
+.twj_meta {
+  font-size: 14px;
+  color: #7b86a5;
+}
+
+.twj_api {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #63709a;
+}
+
+.twj_api_link {
+  color: #3f6dff;
+  text-decoration: none;
+}
+
+.twj_list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.twj_item {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px 22px;
+  box-shadow: 0 2px 10px rgba(30, 60, 130, 0.08);
+}
+
+.twj_item_title {
+  font-size: 18px;
+  color: #1b2f66;
+  margin-bottom: 8px;
+}
+
+.twj_item_summary {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #4c5778;
+  margin-bottom: 12px;
+}
+
+.twj_item_foot {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #8b95b3;
+}
+
+.twj_loading,
+.twj_error {
+  text-align: center;
+  color: #7b86a5;
+  padding: 40px 0;
+}
+
+.twj_error {
+  color: #d9534f;
+}
+
+.twj_back {
+  display: block;
+  margin-top: 32px;
+  text-align: center;
+  color: #3f6dff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .twj_title {
+    font-size: 24px;
+  }
+  .twj_item {
+    padding: 16px;
+  }
+}

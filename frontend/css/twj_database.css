@@ -1,0 +1,108 @@
+/* 姓名：田武杰 | 学号：24002120205
+   时间：2026-11-20 | 大模型：GLM-5.3-Flash
+   数据库连接测试页样式 */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Microsoft YaHei", sans-serif;
+  background: #10182e;
+  color: #eaf0ff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+
+.twj_box {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(24, 34, 66, 0.9);
+  border: 1px solid rgba(120, 160, 255, 0.25);
+  border-radius: 16px;
+  padding: 32px 28px;
+}
+
+.twj_title {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.twj_api {
+  font-size: 13px;
+  color: #8fa3d8;
+  margin-bottom: 24px;
+  word-break: break-all;
+}
+
+.twj_form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.twj_label {
+  font-size: 14px;
+  color: #b9c8ee;
+}
+
+.twj_input {
+  height: 42px;
+  border-radius: 8px;
+  border: 1px solid rgba(120, 160, 255, 0.35);
+  background: rgba(10, 16, 36, 0.8);
+  color: #eaf0ff;
+  padding: 0 12px;
+  font-size: 15px;
+  outline: none;
+}
+
+.twj_input:focus {
+  border-color: #7fb3ff;
+}
+
+.twj_btn {
+  margin-top: 12px;
+  height: 44px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #3f6dff, #6fa0ff);
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.twj_btn:hover {
+  opacity: 0.9;
+}
+
+.twj_msg {
+  margin-top: 20px;
+  font-size: 15px;
+  line-height: 1.6;
+  word-break: break-all;
+  display: none;
+}
+
+.twj_msg.twj_success {
+  display: block;
+  color: #4ade80;
+}
+
+.twj_msg.twj_error {
+  display: block;
+  color: #f87171;
+}
+
+.twj_back {
+  display: inline-block;
+  margin-top: 24px;
+  color: #7fb3ff;
+  text-decoration: none;
+  font-size: 14px;
+}
