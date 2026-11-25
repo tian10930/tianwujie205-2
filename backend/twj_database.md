@@ -90,3 +90,41 @@ INSERT INTO twj_gallery (twj_title, twj_description, twj_img_url, twj_category) 
 ('现代书房', '拥有大面积天窗的现代图书馆内景，光线在书架间流淌。', 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=modern%20minimalist%20library%20interior%20with%20large%20skylight&image_size=landscape_4_3', '建筑'),
 ('太空视角', '从空间站舷窗俯瞰蓝色地球，感受人类航天的浪漫。', 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=space%20station%20orbiting%20earth%20with%20blue%20planet%20view&image_size=landscape_4_3', '航天');
 ```
+
+## 2026-11-25 建表：知识库文件表与切片表（按执行顺序）
+
+```sql
+USE twj_db;
+CREATE TABLE IF NOT EXISTS twj_kb_files (
+  twj_id INT AUTO_INCREMENT PRIMARY KEY COMMENT '知识库文件ID',
+  twj_original_name VARCHAR(255) NOT NULL COMMENT '原始文件名',
+  twj_stored_name VARCHAR(255) NOT NULL COMMENT '磁盘存储文件名',
+  twj_file_type VARCHAR(20) NOT NULL COMMENT '文件类型 txt/doc/docx/pptx/pdf',
+  twj_file_size INT NOT NULL DEFAULT 0 COMMENT '文件大小(字节)',
+  twj_char_count INT NOT NULL DEFAULT 0 COMMENT '解析出的文本字符数',
+  twj_chunk_count INT NOT NULL DEFAULT 0 COMMENT '切片数量',
+  twj_create_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '上传时间'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='知识库文件表';
+
+CREATE TABLE IF NOT EXISTS twj_kb_chunks (
+  twj_id INT AUTO_INCREMENT PRIMARY KEY COMMENT '切片ID',
+  twj_file_id INT NOT NULL COMMENT '所属知识库文件ID',
+  twj_content TEXT NOT NULL COMMENT '切片文本内容',
+  twj_create_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  INDEX twj_idx_file (twj_file_id),
+  CONSTRAINT twj_fk_chunk_file FOREIGN KEY (twj_file_id) REFERENCES twj_kb_files(twj_id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='知识库文本切片表';
+
+-- 测试数据：2 个知识库文件（通过 POST /api/kb/upload 上传入库），对应 8 个文本切片
+INSERT INTO twj_kb_files (twj_id, twj_original_name, twj_stored_name, twj_file_type, twj_file_size, twj_char_count, twj_chunk_count) VALUES (3, '网站使用说明与常见问题.txt', '1795586273129-6ymaan.txt', 'txt', 3479, 1699, 5);
+INSERT INTO twj_kb_files (twj_id, twj_original_name, twj_stored_name, twj_file_type, twj_file_size, twj_char_count, twj_chunk_count) VALUES (4, '科技资讯全栈站产品介绍.docx', '1795586273363-e8ldn7.docx', 'docx', 2430, 868, 3);
+
+INSERT INTO twj_kb_chunks (twj_file_id, twj_content) VALUES (3, '科技资讯全栈站 使用说明与常见问题 作者：田武杰（学号 24002120205） 一、网站简介 本网站是高级网页设计课程的全栈作业项目，前端使用原生 HTML、CSS、JavaScript 开发，后端使用 Node.js + Express 框架，采用 RESTful + MVC 架构，所有接口以 /api/ 为前缀，服务端口固定为 8205。数据库使用 MySQL，数据库名为 twj_db。 二、主要功能 1、首页：展示项目信息（姓名、学号、项目名称与类别），包含 canvas 粒子连线背景动画，并提供所有功能页面的导航入口。 2、科技新闻列表页（news.html）：从数据库 twj_news 表读取 8 条科技新闻，按发布时间倒序展示，包含标题、摘要、来源和发布时间。');
+INSERT INTO twj_kb_chunks (twj_file_id, twj_content) VALUES (3, '3、图文列表页（gallery.html）：从 twj_gallery 表读取图文数据，以网格卡片形式展示，卡片为上图下文布局，图片加载失败时显示渐变占位色块。 4、数据库连接测试页（database.html）：输入 MySQL 用户名和密码，调用 POST /api/db-test 接口测试数据库连接，成功时显示 MySQL 版本号。 5、在线客服页（customer-service.html）：基于硅基流动大模型接口的 AI 客服，可以回答网站功能相关问题。 6、知识库问答页（knowledge-base.html）：支持上传本地文件构建专属知识库，并基于知识库内容进行智能问答。 三、接口清单 1、GET /api/health：健康检查，返回服务运行时间。 2、GET /api/users：用户列表；POST /api/users：新增用户。');
+INSERT INTO twj_kb_chunks (twj_file_id, twj_content) VALUES (3, '3、GET /api/news：获取全部科技新闻。 4、GET /api/gallery：获取全部图文。 5、POST /api/db-test：测试数据库连接，参数为 twj_username 和 twj_password。 6、POST /api/chat：AI 在线客服对话，参数为 twj_message 和可选的 twj_history。 7、POST /api/kb/upload：上传知识库文件，支持 txt、doc、docx、pptx、pdf 五种格式。 8、GET /api/kb/files：获取知识库文件列表。 9、GET /api/kb/files/:id/chunks：查看某个文件的文本切片。 10、DELETE /api/kb/files/:id：删除知识库文件。');
+INSERT INTO twj_kb_chunks (twj_file_id, twj_content) VALUES (3, '11、POST /api/kb/ask：基于知识库的智能问答，参数为 twj_question 和可选的 twj_history。 四、常见问题 问：服务器如何启动？ 答：双击项目根目录的 start.bat，或在 backend 目录下执行 npm start 命令，启动后访问 http://localhost:8205。 问：网站页面上看不到数据怎么办？ 答：请确认 MySQL 服务已启动，backend/.env 中的数据库配置正确，并按浏览器控制台 F12 查看 /api 接口是否返回 code 为 0。 问：知识库支持哪些文件格式？ 答：支持 txt、doc、docx、pptx、pdf 五种格式，单个文件大小限制为 10MB，上传后系统会自动解析文本并切片入库。 问：AI 回答与知识库不符怎么办？');
+INSERT INTO twj_kb_chunks (twj_file_id, twj_content) VALUES (3, '答：知识库问答严格依据已上传文件的内容作答，如知识库中没有相关内容，客服会诚实说明，请先上传包含该问题的文档。 五、技术特点 1、前后端分离：frontend 目录存放静态页面，backend 目录提供 API 服务，使用 express.static 托管。 2、统一响应格式：所有接口返回 { code, msg, data } 格式的 JSON，code 为 0 表示成功。 3、RAG 检索增强生成：上传的文档会被切成约 400 字的片段，提问时按关键词相似度检索最相关的片段，拼入大模型提示词，让回答有据可依。');
+INSERT INTO twj_kb_chunks (twj_file_id, twj_content) VALUES (4, '科技资讯全栈站 产品介绍 作者：田武杰（学号 24002120205） 一、产品定位 科技资讯全栈站是一个面向科技爱好者的一站式资讯网站，集新闻浏览、图文展示、智能客服与知识库问答于一体，是高级网页设计课程的全栈实践作品。 二、核心栏目 1、科技新闻栏目：聚焦人工智能、芯片半导体、商业航天、新能源、量子计算、脑机接口、智慧农业与 AR 眼镜八大热点领域，数据来源于 twj_news 表，共收录 8 条精选新闻。 2、图文栏目：以分类卡片形式展示智慧城市、芯片制造、星空观测、智能制造、春日樱语、云海日出、现代书房与太空视角 8 组图文，图片由 AI 文生图服务生成。 3、在线客服栏目：接入硅基流动提供的 Qwen2.5-7B-Instruct 大模型，通过 POST /api/chat 接口实现多轮对话，可解答网站使用问题。');
+INSERT INTO twj_kb_chunks (twj_file_id, twj_content) VALUES (4, '4、知识库问答栏目：支持上传 txt、doc、docx、pptx、pdf 格式的本地文件，系统自动解析文本并切片入库，提问时基于检索到的知识库片段回答，实现专属自动客服。 三、技术架构 前端采用原生 HTML、CSS、JavaScript 三件套开发，不依赖任何第三方库或 CDN；后端采用 Node.js 与 Express 框架，遵循 RESTful 和 MVC 分层规范；数据存储使用 MySQL 关系型数据库，包含用户表 twj_users、新闻表 twj_news、图文表 twj_gallery、知识库文件表 twj_kb_files 与切片表 twj_kb_chunks。 四、特色亮点 1、首页使用 canvas 绘制粒子连线动画背景，视觉效果富有科技感。 2、全部接口返回统一的 JSON 格式：code 为 0 表示成功，非 0 表示失败，便于前端统一处理。');
+INSERT INTO twj_kb_chunks (twj_file_id, twj_content) VALUES (4, '3、后端在调用大模型时，会在控制台完整输出发送给大模型的数据与接收自大模型的数据，方便教学演示与调试。 4、系统支持一键启动：双击 start.bat 即可同时启动后端服务并托管前端页面。');
+```

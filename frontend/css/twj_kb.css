@@ -1,0 +1,321 @@
+/* 姓名：田武杰 | 学号：24002120205
+   时间：2026-11-25 | 大模型：GLM-5.3-Flash
+   知识库管理与问答页样式 */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Microsoft YaHei", sans-serif;
+  background: #0b1026;
+  color: #eaf0ff;
+  min-height: 100vh;
+}
+
+.twj_kb_page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 16px 40px;
+}
+
+.twj_kb_header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.twj_kb_title {
+  font-size: 28px;
+  margin-bottom: 10px;
+  text-shadow: 0 0 20px rgba(96, 156, 255, 0.5);
+}
+
+.twj_kb_meta {
+  font-size: 13px;
+  color: #8fa3d8;
+}
+
+.twj_kb_layout {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 20px;
+  align-items: stretch;
+}
+
+.twj_kb_panel {
+  background: rgba(20, 30, 62, 0.85);
+  border: 1px solid rgba(120, 160, 255, 0.22);
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  min-height: 560px;
+}
+
+.twj_panel_title {
+  font-size: 17px;
+  color: #9fc0ff;
+  margin-bottom: 14px;
+}
+
+.twj_upload_box {
+  border: 1px dashed rgba(120, 160, 255, 0.45);
+  border-radius: 10px;
+  padding: 26px 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.twj_upload_box:hover,
+.twj_upload_box.twj_drag {
+  background: rgba(63, 109, 255, 0.15);
+  border-color: #7fb3ff;
+}
+
+.twj_upload_hint {
+  font-size: 13px;
+  color: #93a6d4;
+}
+
+.twj_file_input {
+  display: none;
+}
+
+.twj_upload_status {
+  font-size: 12px;
+  color: #7fb3ff;
+  margin-top: 8px;
+  min-height: 16px;
+  word-break: break-all;
+}
+
+.twj_upload_status.twj_err {
+  color: #f87171;
+}
+
+.twj_file_list {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.twj_file_item {
+  background: rgba(14, 22, 48, 0.9);
+  border: 1px solid rgba(120, 160, 255, 0.2);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+
+.twj_file_name {
+  font-size: 14px;
+  color: #eaf0ff;
+  word-break: break-all;
+}
+
+.twj_file_info {
+  font-size: 12px;
+  color: #8fa3d8;
+  margin-top: 6px;
+}
+
+.twj_file_ops {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.twj_file_btn {
+  height: 28px;
+  padding: 0 12px;
+  font-size: 12px;
+  color: #9fc0ff;
+  background: rgba(38, 52, 96, 0.7);
+  border: 1px solid rgba(120, 160, 255, 0.3);
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.twj_file_btn.twj_danger {
+  color: #fca5a5;
+  border-color: rgba(248, 113, 113, 0.4);
+}
+
+.twj_file_btn:hover {
+  background: rgba(63, 109, 255, 0.35);
+}
+
+.twj_chunk_list {
+  margin-top: 10px;
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.twj_chunk_list.twj_show {
+  display: flex;
+}
+
+.twj_chunk_item {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #93a6d4;
+  background: rgba(10, 16, 36, 0.8);
+  border-radius: 8px;
+  padding: 8px 10px;
+  word-break: break-all;
+}
+
+/* 右侧问答 */
+.twj_kb_panel_chat .twj_kb_chat_body {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 4px 2px;
+}
+
+.twj_kb_msg {
+  display: flex;
+}
+
+.twj_kb_msg_user {
+  justify-content: flex-end;
+}
+
+.twj_kb_bubble {
+  max-width: 80%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.7;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.twj_kb_msg_ai .twj_kb_bubble {
+  background: rgba(38, 52, 96, 0.95);
+  border: 1px solid rgba(120, 160, 255, 0.2);
+  border-top-left-radius: 2px;
+}
+
+.twj_kb_msg_user .twj_kb_bubble {
+  background: linear-gradient(135deg, #3f6dff, #5a86ff);
+  border-top-right-radius: 2px;
+}
+
+.twj_kb_sources {
+  margin-top: 8px;
+  font-size: 11px;
+  color: #6f83b8;
+  border-top: 1px dashed rgba(120, 160, 255, 0.25);
+  padding-top: 6px;
+}
+
+.twj_kb_loading {
+  color: #93a6d4;
+}
+
+.twj_kb_loading::after {
+  content: "...";
+  animation: twj_kb_blink 1s infinite;
+}
+
+@keyframes twj_kb_blink {
+  0% { content: "."; }
+  33% { content: ".."; }
+  66% { content: "..."; }
+}
+
+.twj_kb_quick {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.twj_kb_quick_btn {
+  flex: 1;
+  height: 30px;
+  font-size: 12px;
+  color: #9fc0ff;
+  background: rgba(38, 52, 96, 0.7);
+  border: 1px solid rgba(120, 160, 255, 0.3);
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.twj_kb_quick_btn:hover {
+  background: rgba(63, 109, 255, 0.35);
+}
+
+.twj_kb_input_bar {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.twj_kb_input {
+  flex: 1;
+  height: 42px;
+  border-radius: 10px;
+  border: 1px solid rgba(120, 160, 255, 0.35);
+  background: rgba(10, 16, 36, 0.8);
+  color: #eaf0ff;
+  padding: 0 14px;
+  font-size: 14px;
+  outline: none;
+}
+
+.twj_kb_input:focus {
+  border-color: #7fb3ff;
+}
+
+.twj_kb_send {
+  width: 80px;
+  height: 42px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #3f6dff, #6fa0ff);
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.twj_kb_send:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.twj_kb_back {
+  display: block;
+  margin-top: 24px;
+  text-align: center;
+  color: #7fb3ff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.twj_kb_empty {
+  text-align: center;
+  color: #6f83b8;
+  font-size: 13px;
+  padding: 24px 0;
+}
+
+@media (max-width: 800px) {
+  .twj_kb_layout {
+    grid-template-columns: 1fr;
+  }
+  .twj_kb_panel {
+    min-height: auto;
+  }
+  .twj_kb_panel_chat .twj_kb_chat_body {
+    min-height: 320px;
+  }
+}

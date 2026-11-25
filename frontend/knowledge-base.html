@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--
+  姓名：田武杰 | 学号：24002120205
+  时间：2026-11-25 | 大模型：GLM-5.3-Flash
+  知识库管理与 RAG 问答页面
+-->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>知识库问答 - 田武杰</title>
+  <link rel="stylesheet" href="css/twj_kb.css">
+</head>
+<body>
+  <div class="twj_kb_page">
+    <header class="twj_kb_header">
+      <h1 class="twj_kb_title">知识库管理与智能问答（RAG）</h1>
+      <p class="twj_kb_meta">姓名：田武杰 | 学号：24002120205 | 支持 txt / doc / docx / pptx / pdf，10MB 以内</p>
+    </header>
+
+    <main class="twj_kb_layout">
+      <!-- 左侧：知识库管理 -->
+      <section class="twj_kb_panel">
+        <h2 class="twj_panel_title">知识库文件管理</h2>
+        <div class="twj_upload_box" id="twj_upload_box">
+          <p class="twj_upload_hint">点击或拖拽文件到此处上传</p>
+          <input type="file" id="twj_file_input" class="twj_file_input" accept=".txt,.doc,.docx,.pptx,.pdf">
+        </div>
+        <p class="twj_upload_status" id="twj_upload_status"></p>
+        <div class="twj_file_list" id="twj_file_list">加载中...</div>
+      </section>
+
+      <!-- 右侧：知识库问答 -->
+      <section class="twj_kb_panel twj_kb_panel_chat">
+        <h2 class="twj_panel_title">基于知识库的问答</h2>
+        <div class="twj_kb_chat_body" id="twj_kb_chat_body">
+          <div class="twj_kb_msg twj_kb_msg_ai"><div class="twj_kb_bubble">您好！我基于已上传的知识库文件回答问题，请在左侧上传文档后向我提问。</div></div>
+        </div>
+        <div class="twj_kb_quick" id="twj_kb_quick">
+          <button class="twj_kb_quick_btn" type="button" data-twj-q="网站有哪些主要功能？">主要功能</button>
+          <button class="twj_kb_quick_btn" type="button" data-twj-q="知识库支持哪些文件格式？">支持格式</button>
+          <button class="twj_kb_quick_btn" type="button" data-twj-q="后端提供了哪些接口？">接口清单</button>
+        </div>
+        <div class="twj_kb_input_bar">
+          <input class="twj_kb_input" id="twj_kb_input" type="text" placeholder="输入问题，回车发送..." maxlength="200">
+          <button class="twj_kb_send" id="twj_kb_send" type="button">发送</button>
+        </div>
+      </section>
+    </main>
+
+    <a class="twj_kb_back" href="index.html">返回首页</a>
+  </div>
+  <script src="js/twj_kb.js"></script>
+</body>
+</html>

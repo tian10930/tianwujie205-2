@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--
+  姓名：田武杰 | 学号：24002120205
+  时间：2026-11-25 | 大模型：GLM-5.3-Flash
+  在线客服页面（调用硅基流动 AI 接口）
+-->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>在线客服 - 田武杰</title>
+  <link rel="stylesheet" href="css/twj_chat.css">
+</head>
+<body>
+  <div class="twj_chat_wrap">
+    <header class="twj_chat_header">
+      <div class="twj_chat_avatar">客</div>
+      <div class="twj_chat_info">
+        <h1 class="twj_chat_title">在线客服小助手</h1>
+        <p class="twj_chat_meta">姓名：田武杰 | 学号：24002120205</p>
+        <p class="twj_chat_api">接口地址：POST /api/chat</p>
+      </div>
+      <select class="twj_provider_select" id="twj_provider_select" title="选择 AI 服务商">
+        <option value="qiniu" selected>七牛客服</option>
+        <option value="siliconflow">硅基流动</option>
+      </select>
+      <a class="twj_chat_home" href="index.html">返回首页</a>
+    </header>
+
+    <main class="twj_chat_body" id="twj_chat_body">
+      <div class="twj_msg twj_msg_ai">
+        <div class="twj_bubble">您好！我是科技资讯站的在线客服小助手，有什么可以帮您？</div>
+      </div>
+    </main>
+
+    <div class="twj_quick" id="twj_quick">
+      <button class="twj_quick_btn" type="button" data-twj-q="这个网站有哪些功能？">网站功能</button>
+      <button class="twj_quick_btn" type="button" data-twj-q="科技新闻列表页有哪些新闻？">新闻内容</button>
+      <button class="twj_quick_btn" type="button" data-twj-q="后端提供了哪些接口？">接口列表</button>
+    </div>
+
+    <footer class="twj_chat_input_bar">
+      <input class="twj_chat_input" id="twj_chat_input" type="text" placeholder="输入您的问题，回车发送..." maxlength="200">
+      <button class="twj_chat_send" id="twj_chat_send" type="button">发送</button>
+    </footer>
+  </div>
+  <script src="js/twj_chat.js"></script>
+</body>
+</html>

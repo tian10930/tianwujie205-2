@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+  姓名：田武杰 | 学号：24002120205
+  时间：2026-11-25 | 大模型：GLM-5.3-Flash
+  图像识别页面：上传图片，调用视觉模型返回描述
+-->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>图像识别 - 田武杰</title>
+  <link rel="stylesheet" href="css/twj_vision.css">
+</head>
+<body>
+  <div class="twj_vision_page">
+    <header class="twj_vision_header">
+      <h1 class="twj_vision_title">图像识别</h1>
+      <p class="twj_vision_meta">姓名：田武杰 | 学号：24002120205</p>
+      <p class="twj_vision_api">接口地址：POST /api/vision/upload（视觉模型：Qwen3-VL-8B-Instruct）</p>
+    </header>
+
+    <main class="twj_vision_main">
+      <section class="twj_vision_panel">
+        <h2 class="twj_vision_panel_title">上传图片</h2>
+        <div class="twj_upload_box" id="twj_upload_box">
+          <p class="twj_upload_hint">点击或拖拽图片到此处上传</p>
+          <input type="file" id="twj_file_input" class="twj_file_input" accept=".jpg,.jpeg,.png,.gif,.webp,.bmp">
+        </div>
+        <div class="twj_preview_wrap" id="twj_preview_wrap">
+          <img class="twj_preview_img" id="twj_preview_img" alt="图片预览">
+        </div>
+        <button class="twj_recognize_btn" id="twj_recognize_btn" type="button" disabled>开始识别</button>
+        <p class="twj_upload_status" id="twj_upload_status"></p>
+      </section>
+
+      <section class="twj_vision_panel">
+        <h2 class="twj_vision_panel_title">识别结果</h2>
+        <div class="twj_result_box" id="twj_result_box">
+          上传图片后点击"开始识别"，AI 将描述图片内容
+        </div>
+      </section>
+    </main>
+
+    <a class="twj_vision_back" href="index.html">返回首页</a>
+  </div>
+  <script src="js/twj_vision.js"></script>
+</body>
+</html>

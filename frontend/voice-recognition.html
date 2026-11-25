@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+  姓名：田武杰 | 学号：24002120205
+  时间：2026-11-25 | 大模型：GLM-5.3-Flash
+  语音识别页面：上传/录制语音，调用 ASR 模型转文字
+-->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>语音识别 - 田武杰</title>
+  <link rel="stylesheet" href="css/twj_asr.css">
+</head>
+<body>
+  <div class="twj_asr_page">
+    <header class="twj_asr_header">
+      <h1 class="twj_asr_title">语音识别（ASR）</h1>
+      <p class="twj_asr_meta">姓名：田武杰 | 学号：24002120205</p>
+      <p class="twj_asr_api">接口地址：POST /api/asr/upload（ASR 模型：Qwen-Audio-3.0-ASR-Flash）</p>
+    </header>
+
+    <main class="twj_asr_main">
+      <section class="twj_asr_panel">
+        <h2 class="twj_asr_panel_title">1. 上传语音文件</h2>
+        <div class="twj_upload_box" id="twj_upload_box">
+          <p class="twj_upload_hint">点击或拖拽音频到此处（wav/mp3/m4a/ogg/webm/flac，15MB 以内）</p>
+          <input type="file" id="twj_file_input" class="twj_file_input" accept=".wav,.mp3,.m4a,.aac,.ogg,.webm,.flac">
+        </div>
+        <p class="twj_upload_status" id="twj_upload_status"></p>
+
+        <h2 class="twj_asr_panel_title">2. 或使用麦克风录音</h2>
+        <div class="twj_record_row">
+          <button class="twj_record_btn" id="twj_record_btn" type="button">开始录音</button>
+          <span class="twj_record_time" id="twj_record_time">00:00</span>
+        </div>
+        <audio class="twj_audio_player" id="twj_audio_player" controls></audio>
+        <button class="twj_recognize_btn" id="twj_recognize_btn" type="button" disabled>开始识别</button>
+      </section>
+
+      <section class="twj_asr_panel">
+        <h2 class="twj_asr_panel_title">识别结果</h2>
+        <div class="twj_result_box" id="twj_result_box">
+          上传语音文件或录音后点击"开始识别"，语音将转换为文字
+        </div>
+      </section>
+    </main>
+
+    <a class="twj_asr_back" href="index.html">返回首页</a>
+  </div>
+  <script src="js/twj_asr.js"></script>
+</body>
+</html>

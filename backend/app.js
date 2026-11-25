@@ -13,6 +13,10 @@ const twjUserRoutes = require('./routes/twj_user_routes');
 const twjDbRoutes = require('./routes/twj_db_routes');
 const twjNewsRoutes = require('./routes/twj_news_routes');
 const twjGalleryRoutes = require('./routes/twj_gallery_routes');
+const twjChatRoutes = require('./routes/twj_chat_routes');
+const twjKbRoutes = require('./routes/twj_kb_routes');
+const twjVisionRoutes = require('./routes/twj_vision_routes');
+const twjAsrRoutes = require('./routes/twj_asr_routes');
 
 const twjApp = twj_express();
 
@@ -31,6 +35,10 @@ twjApp.use('/api/users', twjUserRoutes);
 twjApp.use('/api/db-test', twjDbRoutes);
 twjApp.use('/api/news', twjNewsRoutes);
 twjApp.use('/api/gallery', twjGalleryRoutes);
+twjApp.use('/api/chat', twjChatRoutes);
+twjApp.use('/api/kb', twjKbRoutes);
+twjApp.use('/api/vision', twjVisionRoutes);
+twjApp.use('/api/asr', twjAsrRoutes);
 
 // 健康检查
 twjApp.get('/api/health', (twjReq, twjRes) => {

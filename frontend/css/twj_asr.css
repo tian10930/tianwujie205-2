@@ -1,0 +1,214 @@
+/* 姓名：田武杰 | 学号：24002120205
+   时间：2026-11-25 | 大模型：GLM-5.3-Flash
+   语音识别页面样式 */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Microsoft YaHei", sans-serif;
+  background: #0b1026;
+  color: #eaf0ff;
+  min-height: 100vh;
+}
+
+.twj_asr_page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 16px 40px;
+}
+
+.twj_asr_header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.twj_asr_title {
+  font-size: 28px;
+  margin-bottom: 10px;
+  text-shadow: 0 0 20px rgba(96, 156, 255, 0.5);
+}
+
+.twj_asr_meta {
+  font-size: 14px;
+  color: #8fa3d8;
+}
+
+.twj_asr_api {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #63709a;
+}
+
+.twj_asr_main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: stretch;
+}
+
+.twj_asr_panel {
+  background: rgba(20, 30, 62, 0.85);
+  border: 1px solid rgba(120, 160, 255, 0.22);
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.twj_asr_panel_title {
+  font-size: 16px;
+  color: #9fc0ff;
+  margin: 12px 0 12px;
+}
+
+.twj_asr_panel_title:first-child {
+  margin-top: 0;
+}
+
+.twj_upload_box {
+  border: 1px dashed rgba(120, 160, 255, 0.45);
+  border-radius: 10px;
+  padding: 26px 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.twj_upload_box:hover,
+.twj_upload_box.twj_drag {
+  background: rgba(63, 109, 255, 0.15);
+  border-color: #7fb3ff;
+}
+
+.twj_upload_hint {
+  font-size: 13px;
+  color: #93a6d4;
+}
+
+.twj_file_input {
+  display: none;
+}
+
+.twj_upload_status {
+  font-size: 12px;
+  color: #7fb3ff;
+  margin-top: 8px;
+  min-height: 16px;
+  word-break: break-all;
+}
+
+.twj_upload_status.twj_err {
+  color: #f87171;
+}
+
+.twj_record_row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.twj_record_btn {
+  height: 40px;
+  padding: 0 20px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #e05555, #ef7b7b);
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.twj_record_btn.twj_recording {
+  background: linear-gradient(135deg, #8a2030, #c23a4e);
+  animation: twj_asr_pulse 1.2s infinite;
+}
+
+@keyframes twj_asr_pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+.twj_record_time {
+  font-size: 16px;
+  color: #9fc0ff;
+  font-family: Consolas, monospace;
+}
+
+.twj_audio_player {
+  width: 100%;
+  height: 40px;
+  margin-top: 12px;
+  display: none;
+}
+
+.twj_audio_player.twj_show {
+  display: block;
+}
+
+.twj_recognize_btn {
+  margin-top: 14px;
+  height: 44px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #3f6dff, #6fa0ff);
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.twj_recognize_btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.twj_result_box {
+  flex: 1;
+  min-height: 280px;
+  background: rgba(14, 22, 48, 0.9);
+  border: 1px solid rgba(120, 160, 255, 0.2);
+  border-radius: 10px;
+  padding: 16px;
+  font-size: 15px;
+  line-height: 1.9;
+  color: #c9d7f5;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.twj_result_box.twj_loading {
+  color: #93a6d4;
+}
+
+.twj_result_box.twj_loading::after {
+  content: "...";
+  animation: twj_asr_blink 1s infinite;
+}
+
+@keyframes twj_asr_blink {
+  0% { content: "."; }
+  33% { content: ".."; }
+  66% { content: "..."; }
+}
+
+.twj_result_box.twj_err {
+  color: #f87171;
+}
+
+.twj_asr_back {
+  display: block;
+  margin-top: 24px;
+  text-align: center;
+  color: #7fb3ff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+@media (max-width: 760px) {
+  .twj_asr_main {
+    grid-template-columns: 1fr;
+  }
+}
